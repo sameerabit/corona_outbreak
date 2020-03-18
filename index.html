@@ -1,0 +1,212 @@
+<html>
+
+    <head>
+
+        <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
+        <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        
+        <style>
+            
+            .marker {
+                background-image: url('./images/hospital.png');
+                background-size: cover;
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                cursor: pointer;
+            }
+
+            .mapboxgl-popup {
+                max-width: 200px;
+            }
+
+            .mapboxgl-popup-content {
+                text-align: center;
+                font-family: 'Open Sans', sans-serif;
+            }
+        
+        
+        </style>
+    
+    
+    </head>
+
+    <body>
+        
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div style="height:800px; width:700px" id='map'></div>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <script src="https://unpkg.com/es6-promise@4.2.4/dist/es6-promise.auto.min.js"></script>
+    <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
+  <script>
+        mapboxgl.accessToken = 'pk.eyJ1IjoidmlyYWphbWFyYSIsImEiOiJjazY5NHJ6ZHkwYzMzM29xam1uOXdjdGhoIn0.SfsSg0wg1gEnGAdx376BFQ';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/light-v10',
+            center: [80.7718,7.8731],
+            zoom: 7
+        });
+
+        var hospitals = [
+            {
+                "id" : 1,
+                "name" : "National Institute of Infectious Diseases",
+                "latitude": 6.9228766,
+                "longitude": 79.9171615
+            },
+            {
+                "id": 2,
+                "name": "National Hospital Sri Lanka", //6.918347,79.8657269
+                "latitude": 6.918347,
+                "longitude": 79.8657269
+            },
+            {
+                "id": 3,
+                "name": "TH - Ragama", //7.0290907,79.9218719
+                "latitude": 7.0290907,
+                "longitude": 79.9218719
+            },
+            {
+                "id": 4,
+                "name": "TH - Karapitiya", //6.0670781,80.2238849
+                "latitude": 6.0670781,
+                "longitude": 80.2238849
+            },
+            {
+                "id": 5,
+                "name": "TH - Anuradhapura", //8.3247705,80.4117795
+                "latitude": 8.3247705,
+                "longitude": 80.4117795
+            },
+            {
+                "id": 6,
+                "name": "TH - Kurunegala", //7.4791271,80.3569262
+                "latitude": 7.4791271,
+                "longitude": 80.3569262
+            },
+            {
+                "id": 8,
+                "name": "National Hospital Kandy", //7.2876208,80.6300749
+                "latitude": 7.2876208,
+                "longitude": 80.6300749
+            },
+            {
+                "id": 9,
+                "name": "TH \u2013 Batticaloa", //7.7080323,81.6884334
+                "latitude": 7.7080323,
+                "longitude": 81.6884334
+            },
+            {
+                "id": 10,
+                "name": "DGH- Gampaha", //7.0913598,79.9985205
+                "latitude": 7.0913598,
+                "longitude": 79.9985205
+            },
+            {
+                "id": 11,
+                "name": "DGH \u2013 Negombo", //7.2120397,79.8468064
+                "latitude": 7.2120397,
+                "longitude": 79.8468064
+            },
+            {
+                "id": 12,
+                "name": "TH \u2013 Rathnapura", //6.6868245,80.390899
+                "latitude": 6.6868245,
+                "longitude": 80.390899
+            },
+            {
+                "id": 13,
+                "name": "PGH \u2013 Badulla", //6.9918084,81.0501615
+                "latitude": 6.9918084,
+                "longitude": 81.0501615
+            },
+            {
+                "id": 14,//6.9176987,79.8740737
+                "name": "LRH", 
+                "latitude": 6.9176987,
+                "longitude": 79.8740737
+            },
+            {
+                "id": 15,
+                "name": "DMH", //6.9199923,79.7703804
+                "latitude": 6.9199923,
+                "longitude": 79.7703804
+            },
+            {
+                "id": 16,
+                "name": "DGH \u2013 Polonnaruwa", //7.9432059,81.0073628
+                "latitude": 7.9432059,
+                "longitude": 81.0073628
+            },
+            {
+                "id": 17,
+                "name": "TH - Kalubowila", //6.8668909,79.8746724
+                "latitude": 6.8668909,
+                "longitude": 79.8746724
+            }
+        ];
+
+        $(function(){
+
+            var features = [];
+
+            hospitals.forEach(hospital =>
+                features.push({
+                    type: 'Feature',
+                    geometry: {
+                        type: 'Point',
+                        coordinates: [hospital.longitude, hospital.latitude]
+                    },
+                    properties: {
+                        title: hospital.name,
+                        description: ''
+                    }
+                })
+            );
+            var geojson = {
+                type: 'FeatureCollection',
+                features: features
+            };
+
+            geojson.features.forEach(function(marker) {
+
+            var el = document.createElement('div');
+            el.className = 'marker';
+
+            new mapboxgl.Marker(el)
+                .setLngLat(marker.geometry.coordinates)
+                .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+                .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+            .addTo(map);
+            
+            });
+
+            // axios.get('/https://api.mapbox.com/geocoding/v5/mapbox.places/paris.json?access_token='+mapboxgl.accessToken)
+            //         .then(function (response) {
+            //             console.log(response);
+            // })
+            // .catch(function (error) {
+            //         // handle error
+            //         console.log(error);
+            // })
+            // .finally(function () {
+            //     // always executed
+            // });
+        });
+
+
+    </script>
+
+</html>
