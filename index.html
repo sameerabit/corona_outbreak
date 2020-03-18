@@ -35,9 +35,46 @@
     <body>
         
         <div class="container">
+            <div class="row my-3">
+                <div class="col-12">
+                    <h1 class="text-center">ශ්‍රී ලංකාවේ කොරෝනා ව්‍යාප්තිය </h1>
+                    <h2 class="text-center">Corona Outbreak of Sri Lanka </h2>
+                </div>
+            </div>
             <div class="row">
                 <div class="col">
                     <div style="height:800px; width:700px" id='map'></div>
+                </div>
+                <div class="col">
+                        <h4 id="hospital_name">Test</h4>
+                        <table class="table">
+                                <tbody>
+                                  <tr>
+                                    <th>Total locals being tested <br> සැකසහිත දේශීයයන්  </th>
+                                    <td id="cumulative_local"></td>
+                                  </tr>
+                                  <tr>
+                                    <th>Total foreigners being tested</th>
+                                    <td id="cumulative_foreign"></td>
+                                  </tr>
+                                  <tr>
+                                    <th>Newly admitted Locals</th>
+                                    <td id="treatment_local"></td>
+                                  </tr>
+                                  <tr>
+                                    <th>Newly admitted Foreigners</th>
+                                    <td id="treatment_foreign"></td>
+                                   </tr>
+                                   <tr>
+                                    <th>Total being Tested</th>
+                                    <td id="cumulative_total"></td>
+                                    </tr>
+                                    <tr>
+                                    <th>Newly Admitted Total</th>
+                                    <td id="treatment_total"></td>
+                                    </tr>
+                                </tbody>
+                        </table>
                 </div>
             </div>
         </div>
@@ -56,7 +93,8 @@
             container: 'map',
             style: 'mapbox://styles/mapbox/light-v10',
             center: [80.7718,7.8731],
-            zoom: 7
+            zoom: 7,
+            interactive: false
         });
 
         var hospitals = [
@@ -203,6 +241,13 @@
                         hospitalId = $(e.target.innerHTML).val();
                         hospitalInfo = coronaData.find(x => {return x.hospital_id==hospitalId});
                         console.log(hospitalInfo);
+                        $('#hospital_name').html(hospitalInfo.hospital.name);
+                        $('#cumulative_local').html(hospitalInfo.cumulative_local);
+                        $('#cumulative_foreign').html(hospitalInfo.cumulative_foreign);
+                        $('#treatment_local').html(hospitalInfo.treatment_local);
+                        $('#treatment_foreign').html(hospitalInfo.treatment_foreign);
+                        $('#cumulative_total').html(hospitalInfo.cumulative_total);
+                        $('#treatment_total').html(hospitalInfo.treatment_total);
                     }
                 ); 
             
