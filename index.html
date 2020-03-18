@@ -43,6 +43,43 @@
             </div>
             <div class="row">
                 <div class="col">
+                        <div class="card-group">
+                                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                                        
+                                        <div class="card-body">
+                                          <h5 class="card-title"> Total Cases</h5>
+                                          <h1 id="local_total"></h1>
+                                        </div>
+                                      </div>
+                                      <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+                                        
+                                        <div class="card-body">
+                                          <h5 class="card-title"> New Cases</h5>
+                                          <h1 id="local_new"></h1>
+
+                                        </div>
+                                      </div>
+                                      <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
+                                        
+                                        <div class="card-body">
+                                          <h5 class="card-title"> Recovered</h5>
+                                          <h1 id="local_recovered"></h1>
+
+                                        </div>
+                                      </div>
+                                      <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+                                        
+                                        <div class="card-body">
+                                          <h5 class="card-title"> Deaths</h5>
+                                          <h1  id="total_deaths"></h1>
+
+                                        </div>
+                                      </div>
+                              </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
                     <div style="height:800px; width:700px" id='map'></div>
                 </div>
                 <div class="col">
@@ -265,6 +302,16 @@
             axios.get('https://www.healthpromo.gov.lk/api/get-current-statistical')
                     .then(function (response) {
                         coronaData = response.data.data.hospital_data;
+                        localTotalCases = response.data.data.local_total_cases;
+                        local_recovered = response.data.data.local_recovered;
+                        local_new_cases = response.data.data.local_new_cases;
+                        local_deaths = response.data.data.local_deaths;
+
+                        $('#local_total').html(localTotalCases);
+                        $('#local_recovered').html(local_recovered);
+                        $('#local_new').html(local_new_cases);
+                        $('#total_deaths').html(local_deaths);
+
             })
             .catch(function (error) {
                     console.log(error);
