@@ -81,7 +81,7 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <h4>Click on marker for more...</h4>
+                    <h4>Click on markers for more...</h4>
                     <div style="height:800px; width:700px" id='map'></div>
                 </div>
                 <div class="col">
@@ -135,7 +135,6 @@
             style: 'mapbox://styles/mapbox/light-v10',
             center: [80.7718,7.8731],
             zoom: 7,
-            interactive: false
         });
 
         var hospitals = [
@@ -276,7 +275,7 @@
                 new mapboxgl.Marker(el)
                     .setLngLat(marker.geometry.coordinates)
                     .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-                    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+                    .setHTML('<h6>' + marker.properties.title + '</h6><p>' + marker.properties.description + '</p>'))
                 .addTo(map);
 
                 el.addEventListener('click', (e) => 
