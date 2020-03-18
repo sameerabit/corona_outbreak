@@ -162,6 +162,8 @@
 
             var features = [];
 
+            var coronaData = [];
+
             hospitals.forEach(hospital =>
                 features.push({
                     type: 'Feature',
@@ -170,6 +172,7 @@
                         coordinates: [hospital.longitude, hospital.latitude]
                     },
                     properties: {
+                        id: hospital.id,
                         title: hospital.name,
                         description: ''
                     }
@@ -182,28 +185,40 @@
 
             geojson.features.forEach(function(marker) {
 
-            var el = document.createElement('div');
-            el.className = 'marker';
+                var el = document.createElement('div');
+                var input = document.createElement("input");   // Create a <button> element
+                input.type = 'hidden';
+                input.value = marker.properties.id;   
+                el.appendChild(input);
+                el.className = 'marker';
 
-            new mapboxgl.Marker(el)
-                .setLngLat(marker.geometry.coordinates)
-                .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-                .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
-            .addTo(map);
+                new mapboxgl.Marker(el)
+                    .setLngLat(marker.geometry.coordinates)
+                    .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+                    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+                .addTo(map);
+
+                el.addEventListener('click', (e) => 
+                    { 
+                        hospitalId = $(e.target.innerHTML).val();
+                        hospitalInfo = coronaData.find(x => {return x.hospital_id==hospitalId});
+                        console.log(hospitalInfo);
+                    }
+                ); 
             
             });
 
-            // axios.get('/https://api.mapbox.com/geocoding/v5/mapbox.places/paris.json?access_token='+mapboxgl.accessToken)
-            //         .then(function (response) {
-            //             console.log(response);
-            // })
-            // .catch(function (error) {
-            //         // handle error
-            //         console.log(error);
-            // })
-            // .finally(function () {
-            //     // always executed
-            // });
+            
+
+            axios.get('http://www.healthpromo.gov.lk/api/get-current-statistical')
+                    .then(function (response) {
+                        coronaData = response.data.data.hospital_data;
+            })
+            .catch(function (error) {
+                    console.log(error);
+            })
+            .finally(function () {
+            });
         });
 
 
