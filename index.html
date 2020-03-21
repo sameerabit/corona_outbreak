@@ -2,6 +2,7 @@
 
     <head>
 
+        <title>Sri Lankan Covid-19 Outbreak</title>
         <script src='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.js'></script>
         <link href='https://api.mapbox.com/mapbox-gl-js/v1.8.1/mapbox-gl.css' rel='stylesheet' />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -33,15 +34,16 @@
     </head>
 
     <body>
-        
-        <div class="container">
-            <div class="row my-3">
-                <div class="col-12">
-                    <h1 class="text-center">ශ්‍රී ලංකාවේ කොරෝනා ව්‍යාප්තිය </h1>
-                    <h2 class="text-center">Corona Outbreak of Sri Lanka </h2>
-                    <p class="text-center">Source: http://hpb.health.gov.lk/api-documentation</p>
+            <nav class="navbar navbar-light bg-light">
+            <div class="row my-3 mx-auto">
+                    <div class="col-12">
+                        <h1 class="text-center">ශ්‍රී ලංකාවේ කොරෝනා ව්‍යාප්තිය </h1>
+                        <h2 class="text-center">Corona Outbreak of Sri Lanka </h2>
+                        <p class="text-center">Source: http://hpb.health.gov.lk/api-documentation</p>
+                    </div>
                 </div>
-            </div>
+            </nav>
+        <div class="container">
             <div class="row">
                 <div class="col">
                         <div class="card-group">
@@ -81,10 +83,22 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <h4>Click on markers for more...</h4>
+                    <h4>Click on markers for hospital wise details <h4>
                     <div style="height:800px; width:700px" id='map'></div>
                 </div>
                 <div class="col">
+                        <div class="card bg-light mb-3 mt-4">
+                                <div class="card-body">
+                                  <h5 class="card-title">Islandwide Tested</h5>
+                                  <h1 id="islandtt"></h1>
+                                </div>
+                        </div>
+                        <div class="card bg-light mb-3">
+                                <div class="card-body">
+                                  <h5 class="card-title">Islandwide Newly Admitted</h5>
+                                  <h1 id="islandna"></h1>
+                                </div>
+                        </div>
                         <div id="info_table">
                         <h4 id="hospital_name"></h4>
                         <table class="table">
@@ -128,6 +142,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
     <script src="https://unpkg.com/es6-promise@4.2.4/dist/es6-promise.auto.min.js"></script>
     <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
   <script>
         mapboxgl.accessToken = 'pk.eyJ1IjoidmlyYWphbWFyYSIsImEiOiJjazY5NHJ6ZHkwYzMzM29xam1uOXdjdGhoIn0.SfsSg0wg1gEnGAdx376BFQ';
         var map = new mapboxgl.Map({
@@ -312,6 +327,12 @@
                         $('#local_recovered').html(local_recovered);
                         $('#local_new').html(local_new_cases);
                         $('#total_deaths').html(local_deaths);
+
+                        treatmentTotalIslandWide = coronaData.reduce((a, b) => a + +b.treatment_total, 0);
+                        cumulativeTotalIslandWide = coronaData.reduce((a, b) => a + +b.cumulative_total, 0);
+                        $('#islandtt').html(cumulativeTotalIslandWide);
+                        $('#islandna').html(treatmentTotalIslandWide);
+
 
             })
             .catch(function (error) {
