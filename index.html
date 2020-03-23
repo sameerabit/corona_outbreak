@@ -44,7 +44,7 @@
 
     <body>
             <nav class="navbar navbar-light bg-light">
-            <div class="row my-3 mx-auto">
+            <div class="row mt-3 mx-auto">
                     <div class="col-12">
                         <h3 class="text-center">ශ්‍රී ලංකාවේ <span class="text-danger">කොවිඩ්-19</span> ව්‍යාප්තිය </h3>
                         <h4 class="text-center"><span class="text-danger">Covid-19</span> Outbreak of Sri Lanka </h4>
@@ -53,7 +53,22 @@
                     </div>
                 </div>
             </nav>
-        <div class="container">
+            <div class="row bg-danger">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col d-flex">
+                                    <span class="text-white w-25">WORLD STATUS:</span>
+                                    <marquee id="marqueue" class="text-white" attribute_name = "attribute_value">
+                                          
+                                              </marquee>
+                            </div>
+                        </div>
+                     
+                    </div>
+                    
+            </div>
+        <div class="container my-2">
+            
             <div class="row">
                 <div class="col">
                         <div class="card-group">
@@ -160,11 +175,37 @@
     <script src="https://d3js.org/d3.v5.min.js"></script>
   <script>
         mapboxgl.accessToken = 'pk.eyJ1IjoidmlyYWphbWFyYSIsImEiOiJjazY5NHJ6ZHkwYzMzM29xam1uOXdjdGhoIn0.SfsSg0wg1gEnGAdx376BFQ';
+        var start = [78.4618062,7.8517321];
+        var end = [80.7718,7.8731];
+        
         var map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/mapbox/light-v10',
-            center: [80.7718,7.8731],
+            center: start,
+            zoom: 0,
+        });
+
+        map.flyTo({
+            // These options control the ending camera position: centered at
+            // the target, at zoom level 9, and north up.
+            center: end,
             zoom: 7,
+            bearing: 0,
+            
+            // These options control the flight curve, making it move
+            // slowly and zoom out almost completely before starting
+            // to pan.
+            speed: 0.5, // make the flying slow
+            curve: 1, // change the speed at which it zooms out
+            
+            // This can be any easing function: it takes a number between
+            // 0 and 1 and returns another number between 0 and 1.
+            easing: function(t) {
+            return t;
+            },
+            
+            // this animation is considered essential with respect to prefers-reduced-motion
+            essential: true
         });
 
         var hospitals = [
@@ -378,6 +419,11 @@
                         $('#islandtt').html(cumulativeTotalIslandWide);
                         $('#islandna').html(treatmentTotalIslandWide);
 
+                        marqHtml = "Total Cases: "+response.data.data.global_total_cases
+                        +"&emsp; Recovered: "+response.data.data.global_recovered
+                        +"&emsp; Deaths: "+ response.data.data.global_deaths 
+                        +"&emsp; New Cases: "+ response.data.data.global_new_cases;
+                        $('#marqueue').html(marqHtml);
 
             })
             .catch(function (error) {
