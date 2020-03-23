@@ -43,16 +43,38 @@
     </head>
 
     <body>
-            <nav class="navbar navbar-light bg-light">
-            <div class="row mt-3 mx-auto">
-                    <div class="col-12">
-                        <h3 class="text-center">ශ්‍රී ලංකාවේ <span class="text-danger">කොවිඩ්-19</span> ව්‍යාප්තිය </h3>
-                        <h4 class="text-center"><span class="text-danger">Covid-19</span> Outbreak of Sri Lanka </h4>
-                        <h5 class="text-center">இலங்கையின் <span class="text-danger">கோவிட் -19</span> வெடிப்பு</h5>
-                        <p class="text-center">Source: http://hpb.health.gov.lk/api-documentation</p>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+            <div class="row">
+                    <a class="navbar-brand" href="#">
+                            <img src="./images/virus.png" width="100" height="100" alt="">
+                    </a>
+                    <a class="navbar-brand" href="#">        
+                    <h5 class="text-left">ශ්‍රී ලංකාවේ <span class="text-danger">කොවිඩ්-19</span> ව්‍යාප්තිය </h3>
+                    <h6 class="text-left"><span class="text-danger">Covid-19</span> Outbreak of Sri Lanka </h4>
+                    <h6 class="text-left">இலங்கையின் <span class="text-danger">கோவிட் -19</span> வெடிப்பு</h5>
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+            </div>  
+                
+            <div class="float-right">
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="exposure_history.html">Exposure History</a>
+                </li>
+                </ul>
+            </div>
+            </div>
                     </div>
-                </div>
             </nav>
+
             <div class="row bg-danger">
                     <div class="container">
                         <div class="row">
@@ -110,11 +132,6 @@
                 <div class="col">
                     <h4>Click on markers for hospital wise details <h4>
                     <div style="height:800px; width:700px" id='map'></div>
-                    <div class="row">
-                        <div class="col">
-                            <a href="https://twitter.com/intent/tweet?button_hashtag=COVID19LK&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-show-count="false">Tweet #COVID19LK</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                        </div>
-                    </div>
                 </div>
                 <div class="col">
                         <div class="card bg-light mb-3 mt-4">
@@ -154,7 +171,7 @@
                                     <td id="cumulative_total"></td>
                                     </tr>
                                     <tr>
-                                    <th>Newly Admitted Total</th>
+                                    <th>New Suspects</th>
                                     <td id="treatment_total"></td>
                                     </tr>
                                 </tbody>
@@ -163,6 +180,10 @@
                 </div>
             </div>
         </div>
+        <footer class="bg-dark">
+                <a href="https://twitter.com/intent/tweet?button_hashtag=COVID19LK&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-show-count="false">Tweet #COVID19LK</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                <p class="text-white text-center">Source: http://hpb.health.gov.lk/api-documentation</p>
+        </footer>
         
     </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
