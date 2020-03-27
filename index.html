@@ -124,6 +124,14 @@
 
                                         </div>
                                       </div>
+                                      <div class="card text-white bg-light mb-3" style="max-width: 18rem;">
+                                        
+                                        <div class="card-body">
+                                          <h5 class="card-title"> Active</h5>
+                                          <h1  id="total_active"></h1>
+
+                                        </div>
+                                      </div>
                               </div>
                 </div>
             </div>
@@ -433,6 +441,8 @@
                         $('#local_recovered').html(local_recovered);
                         $('#local_new').html(local_new_cases);
                         $('#total_deaths').html(local_deaths);
+                        $('#total_active').html(localTotalCases - (local_recovered + local_deaths));
+
 
                         treatmentTotalIslandWide = coronaData.reduce((a, b) => a + +b.treatment_total, 0);
                         cumulativeTotalIslandWide = coronaData.reduce((a, b) => a + +b.cumulative_total, 0);
