@@ -1,0 +1,164 @@
+[
+    {
+        "id" : 1,
+        "name" : "National Institute of Infectious Diseases",
+        "latitude": 6.9228766,
+        "longitude": 79.9171615
+    },
+    {
+        "id": 2,
+        "name": "National Hospital Sri Lanka", 
+        "latitude": 6.918347,
+        "longitude": 79.8657269
+    },
+    {
+        "id": 3,
+        "name": "TH - Ragama", 
+        "latitude": 7.0290907,
+        "longitude": 79.9218719
+    },
+    {
+        "id": 4,
+        "name": "TH - Karapitiya", 
+        "latitude": 6.0670781,
+        "longitude": 80.2238849
+    },
+    {
+        "id": 5,
+        "name": "TH - Anuradhapura", 
+        "latitude": 8.3247705,
+        "longitude": 80.4117795
+    },
+    {
+        "id": 6,
+        "name": "TH - Kurunegala", 
+        "latitude": 7.4791271,
+        "longitude": 80.3569262
+    },
+    {
+        "id": 8,
+        "name": "National Hospital Kandy", 
+        "latitude": 7.2876208,
+        "longitude": 80.6300749
+    },
+    {
+        "id": 9,
+        "name": "TH \u2013 Batticaloa", 
+        "latitude": 7.7080323,
+        "longitude": 81.6884334
+    },
+    {
+        "id": 10,
+        "name": "DGH- Gampaha", 
+        "latitude": 7.0913598,
+        "longitude": 79.9985205
+    },
+    {
+        "id": 11,
+        "name": "DGH \u2013 Negombo", 
+        "latitude": 7.2120397,
+        "longitude": 79.8468064
+    },
+    {
+        "id": 12,
+        "name": "TH \u2013 Rathnapura",
+        "latitude": 6.6868245,
+        "longitude": 80.390899
+    },
+    {
+        "id": 13,
+        "name": "PGH \u2013 Badulla", 
+        "latitude": 6.9918084,
+        "longitude": 81.0501615
+    },
+    {
+        "id": 14,
+        "name": "LRH", 
+        "latitude": 6.9176987,
+        "longitude": 79.8740737
+    },
+    {
+        "id": 15,
+        "name": "DMH",
+        "latitude": 6.4828764,
+        "longitude": 79.945673
+    },
+    {
+        "id": 16,
+        "name": "DGH \u2013 Polonnaruwa", 
+        "latitude": 7.9432059,
+        "longitude": 81.0073628
+    },
+    {
+        "id": 17,
+        "name": "TH - Kalubowila", 
+        "latitude": 6.8668909,
+        "longitude": 79.8746724
+    },
+    {
+        "id": 18,
+        "name": "Castle Street Teaching Hospital", 
+        "latitude": 6.9096708,
+        "longitude": 79.8827952
+    },
+    {
+        "id": 19,
+        "name": "Base Hospital- Hambantota", 
+        "latitude": 6.1274659,
+        "longitude": 81.1201863
+    },
+    {
+        "id": 20,
+        "name": "Base Hospital - Monaragala", 
+        "latitude": 6.9261786,
+        "longitude": 81.3232762
+    },
+    {
+        "id": 21,
+        "name": "Base Hospital - Welikanda", 
+        "latitude": 7.9481171,
+        "longitude": 81.2438509
+    },
+    {
+        "id": 22,
+        "name": "Chest Hospital Welisara", 
+        "latitude": 6.5632277,
+        "longitude": 79.9830722
+    },
+    {
+        "id": 23,
+        "name": "DGH-Kalutara", 
+        "latitude": 6.5632277,
+        "longitude": 79.9830722
+    },
+    {
+        "id": 24,
+        "name": "DGH-Kalutara", 
+        "latitude": 6.5632277,
+        "longitude": 79.9830722
+    },
+    {
+        "id": 25,
+        "name": "DGH-Kalutara", 
+        "latitude": 6.5632277,
+        "longitude": 79.9830722
+    },
+    {
+        "id": 26,
+        "name": "DGH-Kalutara", 
+        "latitude": 6.5632277,
+        "longitude": 79.9830722
+    },
+    {
+        "id": 27,
+        "name": "DGH-Kalutara", 
+        "latitude": 6.5632277,
+        "longitude": 79.9830722
+    },
+    {
+        "id": 28,
+        "name": "DGH-Kalutara", 
+        "latitude": 6.5632277,
+        "longitude": 79.9830722
+    }
+]
